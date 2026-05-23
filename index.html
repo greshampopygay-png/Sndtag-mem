@@ -6,82 +6,58 @@
 <title>Sound Tag</title>
 
 <style>
-    body{
-        margin:0;
-        height:100vh;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex-direction:column;
-        background:black;
-        overflow:hidden;
-        font-family:Arial;
-        color:white;
-    }
+body{
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction:column;
+    margin:0;
+    font-family:Arial;
+}
 
-    img{
-        width:250px;
-        cursor:pointer;
-        transition:0.2s;
-        border-radius:20px;
-    }
+img{
+    width:250px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.2s;
+}
 
-    img:hover{
-        transform:scale(1.05);
-    }
-
-    h1{
-        margin-bottom:20px;
-    }
-
-    .flash{
-        animation:flash 0.2s infinite;
-    }
-
-    @keyframes flash{
-        0%{background:black;}
-        50%{background:red;}
-        100%{background:black;}
-    }
+img:hover{
+    transform:scale(1.05);
+}
 </style>
 </head>
 <body>
 
-<h1>Нажми на картинку 😈</h1>
+<h1>Нажми 😈</h1>
 
-<img id="soundBtn"
-src="https://i.imgur.com/8Km9tLL.png">
+<img id="btn" src="https://i.imgur.com/8Km9tLL.png">
 
-<audio id="sound" loop>
+<audio id="audio" loop>
     <source src="sound.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const btn = document.getElementById("soundBtn");
-const sound = document.getElementById("sound");
+const btn = document.getElementById("btn");
+const audio = document.getElementById("audio");
 
 let playing = false;
 
-btn.onclick = async () => {
+btn.onclick = () => {
 
     if(!playing){
-        sound.play();
-        document.body.classList.add("flash");
+        audio.play();
         playing = true;
     }else{
-        sound.pause();
-        sound.currentTime = 0;
-        document.body.classList.remove("flash");
+        audio.pause();
+        audio.currentTime = 0;
         playing = false;
     }
 
 };
-
-// Остановить звук при закрытии вкладки
-window.addEventListener("beforeunload", () => {
-    sound.pause();
-    sound.currentTime = 0;
-});
 </script>
 
 </body>
